@@ -95,5 +95,68 @@ The shaded part is the uncertainty of the blue line itself.
 
 Show all of the data points of each individual score and corresponding GRIP strength.
 
+```{r}
+newData=data.frame(GRIP=94,ARM=88)
+predict.lm(model.1,newData, interval="prediction")
+```
+
+Fit is the predicted SIMS score when you have a GRIP strength of 94.
+
+The lower and upper are the 95% confidence intervals for predicted SIMS score when the Grip score is 94.
+
+comparing the two models , model1 and model2 
+
+model1(SIMS~ARM) has a slightly lower residual standard error score of 1.226 while model2(SIMS~GRIP) scored at 1.295
+
+model1 (SIMS~ARM) has a higher adjusted r squared score of 0.467 while model2(SIMS~GRIP) scored lower 0.4053
+
+model2 apperars to be slighlty better model because it has a  lower residual standard error score than model1 and also has a higher adjusted r squared score than model2.
+
+## SIMS~ARM+GRIP regression
+
+```{r}
+advNN <- ggplot(data,aes(y=SIMS,x=ARM,z=GRIP))
+```
+
+```{r}
+model.2 <- lm(SIMS~ARM + GRIP,data=data)
+summary.lm(model.1)
+``` 
+
+model3 appears to be the better model because adjusted r squared score was higher than model2 and also scored lower in the residual standard error than model1 or model2.
+
+```{r}
+cor(SIMS~ARM+GRIP,data=data)
+```
+
+## prediction
+
+```{r}
+newData=data.frame(GRIP=94,ARM=88)
+predict.lm(model.2,newData, interval="prediction")
+```
+
+fit is the predicted SIMS score when you have a GRIP strength 94 and ARM strength of 88.
+
+The lower and upper are 95% confidence intervals for predicted SIMS score when the GRIP score is 94 and ARM strength of 88. 
+
+## Inferential tests 
+
+This is the inferential tests to compare models.
+
+The test is anova 
+
+$H_0$: Theres no difference in how well each model fit the data between models (model2,model3)
+
+$H_A$:  Theres is a difference in how well each model fit the data between models (model2,model3)
+
+```{r}
+anova(model.1,model.2)
+```
+
+The P- value is 0.00004994 which is very low .
+
+We reject the null hypothesis because the p value is too low. There is a difference between model2, and model3. We have evidence that model3 is btter than model2.
+
 
 
