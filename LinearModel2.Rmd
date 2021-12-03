@@ -14,6 +14,7 @@ require(tigerstats)
 
 ## Introduction
 
+
 Form three regression models; Model1 is SIMS~ARM, Model2 is SIMS~GRIP, and Model3 is SIMS~ARM+GRIP. For each model find a 95% prediction interval of SIMS given a value of 94  for GRIP and 88 for ARM. Compare Model1 with Model3 using anova. Write it up in a markdown document, push the project up to your github account and submit it back to canvas as link. 
 
 ## SIMS~ARM regression
@@ -156,7 +157,7 @@ anova(model.1,model.2)
 
 The P- value is 0.00004994 which is very low .
 
-We reject the null hypothesis because the p value is too low. There is a difference between model2, and model3. We have evidence that model3 is btter than model2.
+We reject the null hypothesis because the p value is too low. There is a difference between model2, and model3. We have evidence that model3 is better than model2.
 
 
 
